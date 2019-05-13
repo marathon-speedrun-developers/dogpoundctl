@@ -81,11 +81,13 @@ function bambooctl {
   elif [bbctlcmd == 2]
   then
     systemctl start bamboo
+    systemctl status bamboo
     wait 10
     bambooctl
   elif [bbctlcmd == 3]
   then
     systemctl stop bamboo
+    systemctl status bamboo
     wait 10
     bambooctl
   elif [bbctlcmd == 4]
@@ -97,6 +99,53 @@ function bambooctl {
   then
     localopssel
   elif [bbctlcmd == 6]
+  then
+    init
+  else
+    echo "Invalid selection, try again."
+}
+
+function caddyctl {
+  clear
+  echo "====CADDY CONTROL OPS===="
+  echo "Select an option."
+  echo ""
+  echo ""
+  echo "(1) Check Caddy Status"
+  echo "(2) Start Caddy"
+  echo "(3) Stop Caddy"
+  echo "(4) Emergency Stop Caddy"
+  echo "(5) Go to previous menu."
+  echo "(6) Return to main menu."
+
+  read cdyctlcmd
+
+  if [cdyctlcmd == 1]
+  then
+    systemctl status caddy
+    wait 10
+    caddyctl
+  elif [cdyctlcmd == 2]
+  then
+    systemctl start caddy
+    systemctl status caddy
+    wait 10
+    caddyctl
+  elif [cdyctlcmd == 3]
+  then
+    systemctl stop caddy
+    systemctl status caddy
+    wait 10
+    caddyctl
+  elif [cdyctlcmd == 4]
+  then
+    echo "Not implemented yet. Sorry!"
+    wait 5
+    bambooctl
+  elif [cdyctlcmd == 5]
+  then
+    localopssel
+  elif [cdyctlcmd == 6]
   then
     init
   else
